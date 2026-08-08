@@ -1,0 +1,310 @@
+<!DOCTYPE html>  <html lang="en">  <head>  
+    <meta charset="UTF-8">  <meta name="viewport"  
+      content="width=device-width, initial-scale=1.0">  
+
+<meta name="description"  
+      content="Parivaar AI - Your AI assistant">  
+
+<title>Parivaar AI</title>  
+
+<!-- CSS file -->  
+<link rel="stylesheet" href="style.css">
+
+</head>  <body>  <!-- ================= SIDEBAR ================= -->  
+
+<aside class="sidebar" id="sidebar">  
+
+    <!-- Logo -->  
+    <div class="logo">  
+<img src="logo.png" alt="Parivaar AI Logo">
+
+</div>  <!-- New Chat -->  
+    <button class="new-chat" onclick="newChat()">  
+        <span class="plus-icon">＋</span>  
+        <span>New chat</span>  
+    </button>  
+
+
+    <!-- Navigation -->  
+    <nav class="navigation">  
+
+        <button class="nav-item">  
+            <span>🔍</span>  
+            <span>Search</span>  
+        </button>  
+
+        <button class="nav-item">  
+            <span>🖼️</span>  
+            <span>Images</span>  
+        </button>  
+
+        <button class="nav-item">  
+            <span>📁</span>  
+            <span>Library</span>  
+        </button>  
+
+
+    </nav>  
+
+
+    <!-- Recent Chats -->  
+    <div class="recent-section">  
+<div class="section-title">Recent</div>  
+
+<div class="chat-history" id="chatHistory">  
+    <!-- Recent searches will appear here -->  
+</div>
+
+</div>  <!-- Sidebar Bottom -->  
+    <div class="sidebar-bottom">  
+
+        <button class="sidebar-option"  
+                onclick="toggleTheme()">  
+
+            <span>🌙</span>  
+            <span>Dark mode</span>  
+
+        </button>  
+
+
+        <button class="sidebar-option">  
+
+            <span>⚙️</span>  
+            <span>Settings</span>  
+
+        </button>  
+
+
+        <!-- User -->  
+        <div class="user-profile">  
+
+<div class="user-avatar">  
+    <img src="logo.png" alt="User">  
+</div>  
+
+<div class="user-info">  
+    <strong>Parivaar AI</strong>  
+    <small>AI Assistant</small>  
+</div>
+
+</div>  </div>  
+
+</aside>  
+
+
+<!-- ================= MAIN AREA ================= -->  
+
+<main class="main">  
+
+
+    <!-- Top Bar -->  
+    <header class="top-bar">  
+
+        <!-- Mobile menu -->  
+        <button class="menu-button"  
+                onclick="toggleSidebar()">  
+
+            ☰  
+
+        </button>  
+
+
+        <div class="model-name">  
+
+            <strong>Parivaar AI</strong>  
+
+            <span class="model-badge">  
+                AI  
+            </span>  
+
+        </div>  
+
+
+        <button class="top-button"  
+                onclick="toggleTheme()">  
+
+            🌙  
+
+        </button>  
+
+    </header>  
+
+
+    <!-- ================= CHAT AREA ================= -->  
+
+    <section class="chat-container"  
+             id="chatContainer">  
+
+
+        <!-- Welcome Screen -->  
+
+        <div class="welcome-screen"  
+             id="welcomeScreen">  
+
+            <div class="welcome-logo">  
+                <img src="logo.png" alt="Parivaar AI">  
+            </div>  
+
+            <h1>  
+                What can I help with?  
+            </h1>  
+
+            <p>  
+                Ask Parivaar AI anything  
+            </p>  
+
+
+            <!-- Suggestion Cards -->  
+
+            <div class="suggestions">  
+
+                <button class="suggestion-card"  
+                        onclick="useSuggestion('Explain Java inheritance')">  
+
+                    <span>💡</span>  
+
+                    <div>  
+                        <strong>Explain something</strong>  
+                        <small>  
+                            Learn Java inheritance  
+                        </small>  
+                    </div>  
+
+                </button>  
+
+
+                <button class="suggestion-card"  
+                        onclick="useSuggestion('Write a website using HTML CSS and JavaScript')">  
+
+                    <span>💻</span>  
+
+                    <div>  
+                        <strong>Write code</strong>  
+                        <small>  
+                            Create a website  
+                        </small>  
+                    </div>  
+
+                </button>  
+
+
+                <button class="suggestion-card"  
+                        onclick="useSuggestion('Tell me today weather')">  
+
+                    <span>🌤️</span>  
+
+                    <div>  
+                        <strong>Search the web</strong>  
+                        <small>  
+                            Find current information  
+                        </small>  
+                    </div>  
+
+                </button>  
+
+
+                <button class="suggestion-card"  
+                        onclick="useSuggestion('Give me some project ideas')">  
+
+                    <span>🚀</span>  
+
+                    <div>  
+                        <strong>Get ideas</strong>  
+                        <small>  
+                            Find project ideas  
+                        </small>  
+                    </div>  
+
+                </button>  
+
+            </div>  
+
+        </div>  
+
+
+        <!-- Messages will appear here -->  
+
+        <div class="messages"  
+             id="messages">  
+
+        </div>  
+
+
+    </section>  
+
+
+    <!-- ================= INPUT AREA ================= -->  
+
+    <div class="input-area">  
+
+
+        <!-- Search / Chat Input -->  
+
+        <div class="input-box">  
+
+
+            <!-- Attachment -->  
+
+            <button class="input-button"  
+                    title="Attach file">  
+
+                ＋  
+
+            </button>  
+
+
+            <!-- Text -->  
+
+            <textarea  
+                id="messageInput"  
+                placeholder="Ask Parivaar AI..."  
+                rows="1"  
+                onkeydown="handleEnter(event)">  
+            </textarea>  
+
+
+            <!-- Voice -->  
+
+            <button class="input-button"
+        id="voiceButton"
+        type="button"
+        title="Voice input">
+
+    🎙️
+
+</button> 
+
+
+            <!-- Send -->  
+
+            <button class="send-button"  
+                    id="sendButton"  
+                    onclick="sendMessage()">  
+
+                ↑  
+
+            </button>  
+
+        </div>  
+
+
+        <!-- Disclaimer -->  
+
+        <p class="disclaimer">  
+
+            Parivaar AI can make mistakes.  
+            Check important information.  
+
+        </p>  
+
+    </div>  
+
+
+</main>  
+
+
+<!-- ================= JAVASCRIPT ================= -->  
+
+<script src="script.js"></script>
+
+</body>  </html>
